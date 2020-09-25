@@ -13,7 +13,7 @@ const commands = (bot, msg, cmd, subcmd) => {
     msg.channel.send({
       embed: richEmbed
               .setColor('#ffffff')
-              .setDescription(`Please use #${channelPerm} to check referrals.`)
+              .setDescription(`Please use ${channelPerm} to check referrals.`)
     })
   } else {
     if (cmd === 'help') help(bot, msg, cmd);
