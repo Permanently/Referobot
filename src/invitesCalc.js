@@ -28,18 +28,26 @@ const invitesCalc = (bot, msg, cmd) => {
 
       let nextRole;
       let roleNumber;
-      if (numberUses < roleNums[0]) [nextRole, roleNumber] = [roleNames[0], roleNums[0]];
-      else if (numberUses < roleNums[1]) [nextRole, roleNumber] = [roleNames[1], roleNums[1]];
-      else if (numberUses < roleNums[2]) [nextRole, roleNumber] = [roleNames[2], roleNums[2]];
-      else if (numberUses < roleNums[3]) [nextRole, roleNumber] = [roleNames[3], roleNums[3]];
-      else if (numberUses < roleNums[4]) [nextRole, roleNumber] = [roleNames[4], roleNums[4]];
-      else if (numberUses < roleNums[5]) [nextRole, roleNumber] = [roleNames[5], roleNums[5]];
-      else if (numberUses >= roleNums[5]) {
+
+      let highestRole = false;
+
+      for (i = 0, i < roleNums.length; i++;) {
+        if (numberUses < roleNums[i]) {
+          [nextRole, roleNumber] = [roleNames[i], roleNums[i]];
+          highestRole = false;
+        }
+        else {
+          highestRole = true;
+        }
+      }
+
+      if (highestRole = true) {
         msg.channel.send({
           embed: richEmbed
                   .setColor('#ffffff')
                   .setDescription(`You are the highest role of **${roleNames[5]}** with ${numberUses} invites.`)
         })
+        
         updateme(msg, numberUses, numberLeft, nextRole);
         return; // no further calculation needed
       }
